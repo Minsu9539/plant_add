@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1054872286303",
+    "firebase_url": "https://rapid-depot-223800.firebaseio.com",
+    "project_id": "rapid-depot-223800",
+    "storage_bucket": "rapid-depot-223800.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1054872286303:android:47cffede3bdaeb303757ea",
+        "android_client_info": {
+          "package_name": "com.example.plnatsub"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1054872286303-0bcsqqmf040ts72m2ci6hfidhb5k1tbe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAyo5nwGeiJ7q3HeVuIEOu4G9Zmn6GfRBA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1054872286303-0bcsqqmf040ts72m2ci6hfidhb5k1tbe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
