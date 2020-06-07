@@ -43,6 +43,15 @@
             android:fontFamily="@font/cookierun"
             android:background="@drawable/btn_main"
             android:text="나의 도감"/>
+        <Button
+            android:id="@+id/main_btn3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:textSize="40sp"
+            android:fontFamily="@font/cookierun"
+            android:background="@drawable/btn_main"
+            android:text="꽃 정보"/>
 
     </LinearLayout>
 

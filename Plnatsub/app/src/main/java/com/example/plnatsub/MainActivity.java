@@ -44,7 +44,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button main_btn1,main_btn2;
+    Button main_btn1,main_btn2,main_btn3;
     ImageView gallery_img;
     Boolean album = false;
     private final  String TAG = getClass().getSimpleName();
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
         main_btn1 = findViewById(R.id.main_btn1);
         main_btn2 = findViewById(R.id.main_btn2);
+        main_btn3 = findViewById(R.id.main_btn3);
         //gallery_img = findViewById(R.id.gallery_img);
 
         // 권한 체크
@@ -89,6 +90,13 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MyPlantBook.class);
+                startActivity(intent);
+            }
+        });
+        main_btn3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), PlantInfo.class);
                 startActivity(intent);
             }
         });
