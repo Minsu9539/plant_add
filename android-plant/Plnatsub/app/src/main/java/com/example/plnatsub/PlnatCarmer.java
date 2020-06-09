@@ -8,7 +8,9 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.ExifInterface;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -30,6 +32,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.TedPermission;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -62,14 +65,14 @@ public class PlnatCarmer extends AppCompatActivity {
     private TextView mListTv,pListTv,first_test,second_test,result1_percent,result2_percent;
     private final  String TAG = getClass().getSimpleName();
     // server의 url을 적어준다
-    private final String BASE_URL = "http://48e3d8bdbf47.ngrok.io";
+    private final String BASE_URL = "http://fc841842624b.ngrok.io";
 //    private final String BASE_URL = "http://127.0.0.1:5000/";
 
     private static final int REQUEST_IMAGE_CAPTURE = 672;
     private String imageFilePath;
     private Uri photoUri;
     Button btn_cature,first_detail_btn,second_detail_btn;
-    ImageView image_result;
+    ImageView image_result,imageViewId;
     String content;
     String android_id, formatDate;
     @Override
@@ -87,7 +90,7 @@ public class PlnatCarmer extends AppCompatActivity {
         first_detail_btn = findViewById(R.id.first_detail_btn);
         second_detail_btn = findViewById(R.id.second_detail_btn);
         image_result = findViewById(R.id.image_result);
-
+        imageViewId = findViewById(R.id.imageViewId);
 
 
         initMyAPI(BASE_URL);
@@ -208,6 +211,8 @@ public class PlnatCarmer extends AppCompatActivity {
     }
 
     public void getplant(){
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+
         Log.d(TAG,"안드"+android_id);
         Log.d(TAG,"시간"+formatDate);
 
@@ -237,6 +242,8 @@ public class PlnatCarmer extends AppCompatActivity {
                     pListTv.setText(second_txt);
                     result2_percent.setText(second_percent_txt);
 
+
+
 ///여기 부터 다른 레이아웃
                     first_detail_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -252,24 +259,25 @@ public class PlnatCarmer extends AppCompatActivity {
                                 Log.d(TAG,response.body().toString());
                                 String name_txt = "";
                                 String flower_txt = "";
-                                String imgUri_txt = "";
                                 String content_txt = "";
+                                String img_txt = "";
+
                                 for(AccountItem accountItem:versionList){
                                     Log.d(TAG,"ㅅ"+one);
                                     Log.d(TAG,"ㅎ"+accountItem.getName());
 
                                         name_txt +=""+ accountItem.getName();
                                         flower_txt +=" 꽃말: "+accountItem.getFlower();
-                                        imgUri_txt +=" 꽃 사진 ";
-                                        content_txt +=" 꽃 내용: "+accountItem.getContent();
+                                    content_txt +=" 꽃 내용: "+accountItem.getContent();
+                                    img_txt ="http://fc841842624b.ngrok.io"+accountItem.getImage();
 
                                 }
-                               // first_test.setText(name_txt);
-                                //Log.d(TAG,"실화냐"+name_txt);
+
                                 intent.putExtra("name_txt",name_txt);
                                 intent.putExtra("flower_txt",flower_txt);
-                                intent.putExtra("imgUri_txt",imgUri_txt);
                                 intent.putExtra("content_txt",content_txt);
+                                intent.putExtra("img_txt",img_txt);
+
                                 startActivity(intent);
 
                             }else{
@@ -301,7 +309,7 @@ public class PlnatCarmer extends AppCompatActivity {
                                         Log.d(TAG,response.body().toString());
                                         String name_txt = "";
                                         String flower_txt = "";
-                                        String imgUri_txt = "";
+                                        String img_txt = "";
                                         String content_txt = "";
                                         for(AccountItem accountItem:versionList){
                                             Log.d(TAG,"ㅅ"+two);
@@ -309,13 +317,13 @@ public class PlnatCarmer extends AppCompatActivity {
 //
                                             name_txt +=""+ accountItem.getName();
                                             flower_txt +=" 꽃말: "+accountItem.getFlower();
-                                            imgUri_txt +=" 꽃 사진 ";
+                                            img_txt ="http://fc841842624b.ngrok.io"+accountItem.getImage();
                                             content_txt +=" 꽃 내용: "+accountItem.getContent();
 //
                                         }
                                         intent.putExtra("name_txt",name_txt);
                                         intent.putExtra("flower_txt",flower_txt);
-                                        intent.putExtra("imgUri_txt",imgUri_txt);
+                                        intent.putExtra("img_txt",img_txt);
                                         intent.putExtra("content_txt",content_txt);
                                         startActivity(intent);
 //                                intent.putExtra("detail_txt",detail2_txt);
