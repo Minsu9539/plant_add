@@ -26,7 +26,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class PlantDetail extends AppCompatActivity {
 
-    private final String BASE_URL = "http://85b809a8712a.ngrok.io";  //url주소
+    private final String BASE_URL = "http://ac6dc08d6af5.ngrok.io";  //url주소
 
     private MyAPI mMyAPI;
     private final  String TAG = getClass().getSimpleName();
@@ -67,6 +67,8 @@ public class PlantDetail extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d("아나", android_id);
 
+                Toast.makeText(getApplicationContext(),"도감에 추가 완료", Toast.LENGTH_SHORT).show();
+
                 Gson gson = new GsonBuilder().setLenient().create();
 
                 Retrofit retrofit = new Retrofit.Builder()
@@ -83,24 +85,23 @@ public class PlantDetail extends AppCompatActivity {
                         Log.i("도감 good", "good");
 //                        Booklist();
 
-                        Toast.makeText(getApplicationContext(),"도감에 추가 완료", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(Call<AccountItem> call, Throwable t) {
                         Log.i(TAG,"도감 Fail msg : " + t.getMessage());
 //                        Booklist();
-                        Intent intent = new Intent(getApplicationContext(), PlantBook.class);
-                        startActivity(intent);
+
                     }
                 });
             }
         });
-        
+
         goGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), PlantBook.class);
+                startActivity(intent);
             }
         });
     }
